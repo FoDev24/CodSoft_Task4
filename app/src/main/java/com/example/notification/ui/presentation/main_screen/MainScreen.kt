@@ -2,6 +2,7 @@ package com.example.notification.ui.presentation.main_screen
 
 import android.content.Context
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,25 +26,24 @@ import com.example.notification.R
 
 @Composable
 fun MainScreen(
-    context : Context
+    context: Context
 ) {
-
 
 
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie))
     var isPlaying by remember { mutableStateOf(false) }
 
 
-
     val progress by animateLottieCompositionAsState(
         composition = composition,
-        isPlaying = isPlaying)
+        isPlaying = isPlaying
+    )
 
-    LaunchedEffect(key1 = progress ){
-        if(progress == 0f){
+    LaunchedEffect(key1 = progress) {
+        if (progress == 0f) {
             isPlaying = true
         }
-        if(progress == 1f){
+        if (progress == 1f) {
             isPlaying = false
         }
     }
@@ -54,15 +54,26 @@ fun MainScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-            LottieAnimation(
-                modifier = Modifier.size(300.dp)
-                    .clickable {
-                        val createNotification = NotificationService(context =context, title = "CodSoft",msg ="CodSoft internship BATCH P5")
-                        createNotification.showNotification()
-                        isPlaying = true },
-                composition = composition,
-                progress = {progress}
+        Box(modifier = Modifier
+            .clickable(
+            indication = null,
+            interactionSource = remember { MutableInteractionSource() }
+        ) {
+            val createNotification = NotificationService(
+                context = context,
+                title = "CodSoft",
+                msg = "CodSoft internship BATCH P5"
             )
+            createNotification.showNotification()
+            isPlaying = true
+        }){
+            LottieAnimation(
+                modifier = Modifier
+                    .size(400.dp),
+                composition = composition,
+                progress = { progress }
+            )
+        }
 
 
 

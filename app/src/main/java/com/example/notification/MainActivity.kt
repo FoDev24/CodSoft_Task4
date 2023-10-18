@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.notification.ui.presentation.main_screen.MainScreen
 import com.example.notification.ui.presentation.main_screen.NotificationService
-import com.example.notification.ui.theme.NotificationTheme
+import com.example.notification.ui.presentation.theme.NotificationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

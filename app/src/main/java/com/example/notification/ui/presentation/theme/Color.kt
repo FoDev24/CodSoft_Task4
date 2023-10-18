@@ -1,4 +1,4 @@
-package com.example.notification.ui.theme
+package com.example.notification.ui.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
